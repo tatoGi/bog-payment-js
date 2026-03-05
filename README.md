@@ -77,6 +77,75 @@ console.log(order._links.redirect.href);
 npm test
 ```
 
+## Manual Testing Without BOG Keys
+
+If you do not have real BOG credentials yet, you can test integration flow with a local mock server.
+
+1. Create `mock-server.mjs`:
+
+```js
+import http from "node:http";
+
+const server = http.createServer((req, res) => {
+  res.setHeader("Content-Type", "application/json");
+
+  if (req.method === "POST" && req.url === "/oauth/token") {
+    return res.end(
+      JSON.stringify({
+        access_token: "mock_access_token",
+        token_type: "Bearer",
+        expires_in: 3600
+      })
+    );
+  }
+
+  if (req.method === "POST" && req.url === "/opay/api/v1/checkout/orders") {
+    return res.end(
+      JSON.stringify({
+        id: "mock_order_123",
+        status: "created",
+        _links: { redirect: { href: "https://example.test/mock-checkout" } }
+      })
+    );
+  }
+
+  if (req.method === "GET" && req.url.startsWith("/opay/api/v1/checkout/payment/")) {
+    const orderId = req.url.split("/").pop();
+    return res.end(JSON.stringify({ id: orderId, status: "completed", amount: 100, currency: "GEL" }));
+  }
+
+  res.statusCode = 404;
+  res.end(JSON.stringify({ message: "Not found" }));
+});
+
+server.listen(8787, () => {
+  console.log("Mock BOG server is running on http://127.0.0.1:8787");
+});
+```
+
+2. Run the mock server:
+
+```bash
+node mock-server.mjs
+```
+
+3. Point client to mock endpoints:
+
+```js
+import { BogPaymentClient } from "@tatogi/bog-payment-js";
+
+const bog = new BogPaymentClient({
+  clientId: "mock_client",
+  clientSecret: "mock_secret",
+  authUrl: "http://127.0.0.1:8787/oauth/token",
+  baseUrl: "http://127.0.0.1:8787/opay/api/v1"
+});
+```
+
+4. Test full flow manually:
+- call `createOrder(...)` and verify `redirect` link
+- call `getOrderDetails("mock_order_123")` and verify `status: completed`
+
 ## Publish
 
 ```bash
