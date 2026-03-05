@@ -1,4 +1,4 @@
-# Releasing `tatogi-bog-payment-js`
+# Releasing `@tatogi/bog-payment-js`
 
 ## One-time setup
 
@@ -13,7 +13,7 @@
 
 ## Manual publish
 
-Run from `js/bog-payment-js`:
+Run from repository root:
 
 ```bash
 npm test

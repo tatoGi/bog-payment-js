@@ -1,17 +1,17 @@
-# tatogi-bog-payment-js
+# @tatogi/bog-payment-js
 
 JavaScript client for Bank of Georgia iPay API.
 
 ## Install
 
 ```bash
-npm install tatogi-bog-payment-js
+npm install @tatogi/bog-payment-js
 ```
 
 ## Usage
 
 ```js
-import { BogPaymentClient } from "tatogi-bog-payment-js";
+import { BogPaymentClient } from "@tatogi/bog-payment-js";
 
 const bog = new BogPaymentClient({
   clientId: process.env.BOG_CLIENT_ID,

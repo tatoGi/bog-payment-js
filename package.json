@@ -1,5 +1,5 @@
 {
-  "name": "tatogi-bog-payment-js",
+  "name": "@tatogi/bog-payment-js",
   "version": "1.0.0",
   "description": "JavaScript client for Bank of Georgia iPay API",
   "private": false,
