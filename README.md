@@ -86,4 +86,4 @@ npm publish --access public
 
 For automated publish from GitHub Actions:
 - add repository secret `NPM_TOKEN`
-- push a tag like `js-v1.0.0`
+- push a tag like `v1.0.0`

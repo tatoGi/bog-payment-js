@@ -32,11 +32,11 @@ npm run release:major
 
 ## GitHub Actions publish
 
-Workflow publishes automatically when a tag with `js-v*` is pushed, for example:
+Workflow publishes automatically when a tag with `v*` is pushed, for example:
 
 ```bash
-git tag js-v1.0.0
-git push origin js-v1.0.0
+git tag v1.0.0
+git push origin v1.0.0
 ```
 
 Required repository secret:

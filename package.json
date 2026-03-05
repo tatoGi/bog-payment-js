@@ -32,13 +32,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tatoGi/bog-payment.git",
-    "directory": "js/bog-payment-js"
+    "url": "git+https://github.com/tatoGi/bog-payment-js.git"
   },
   "bugs": {
-    "url": "https://github.com/tatoGi/bog-payment/issues"
+    "url": "https://github.com/tatoGi/bog-payment-js/issues"
   },
-  "homepage": "https://github.com/tatoGi/bog-payment/tree/main/js/bog-payment-js#readme",
+  "homepage": "https://github.com/tatoGi/bog-payment-js#readme",
   "publishConfig": {
     "access": "public"
   },
